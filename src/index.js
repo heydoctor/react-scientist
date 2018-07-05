@@ -4,4 +4,4 @@ import Metric from './Metric';
 export default {
   Experiment,
   Metric,
-}
+};
