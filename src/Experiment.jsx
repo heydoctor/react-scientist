@@ -4,10 +4,6 @@ import React from 'react';
 import crc32 from 'fbjs/lib/crc32';
 import storage from './storage';
 
-const throwError = message => {
-  throw new Error(`<Experiment />: ${message}`);
-};
-
 type Variant = {
   name: string,
   weight: number,
@@ -29,6 +25,10 @@ type StartArgs = {
   variantIndex: number,
   variantName: string,
 }
+
+const throwError = message => {
+  throw new Error(`<Experiment />: ${message}`);
+};
 
 export const selectVariantIndex = (variants: VariantList, staticId: ?number | ?string): number => {
   // Sorted array of the variant names, example: ["A", "B", "C"]

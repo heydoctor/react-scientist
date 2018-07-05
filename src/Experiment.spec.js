@@ -33,5 +33,9 @@ describe('#selectVariantIndex', () => {
       }
     }
   });
+
+  test('throws if any weight is greater than 1', () => {
+    expect(() => selectVariantIndex([{ name: 'Wrong', weight: 2 }])).toThrowErrorMatchingSnapshot()
+  })
 })
 
