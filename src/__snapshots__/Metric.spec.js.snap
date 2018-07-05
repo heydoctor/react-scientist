@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Metric.onEvent throws 1`] = `"<Metric />: This method should be overwritten somewhere before React is mounted, e.g. Metric.onEvent = () => {...}"`;

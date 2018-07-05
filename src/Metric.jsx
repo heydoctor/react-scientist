@@ -8,6 +8,7 @@ type MetricProps = {
 	name: string,
 	data?: Object,
 	options?: Object,
+	style: Object,
 	children: React.Node,
 };
 
@@ -26,6 +27,7 @@ export default class Metric extends React.Component<MetricProps> {
 
 	static defaultProps = {
 		on: 'click',
+		style: {},
 	};
 
 	static onEvent = (args: EventArgs) => {
@@ -53,13 +55,14 @@ export default class Metric extends React.Component<MetricProps> {
 	};
 
 	render() {
-		const { children, data, name, on, options, ...props } = this.props;
+		const { children, data, name, on, options, style, ...props } = this.props;
 
 		return (
 			<div
 				{...props}
-				className="react-scientist-metric"
-				style={{ display: 'contents' }}
+				className="rs-metric"
+				data-testid="rs-metric"
+				style={{ display: 'contents', ...style }}
 				ref={ref => {
 					this.node = ref;
 				}}

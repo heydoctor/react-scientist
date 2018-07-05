@@ -1,12 +1,5 @@
 module.exports = {
-  "collectCoverageFrom": [
-    "<rootDir>/src/**/*.{jsx}"
-  ],
-  "transform": {
-    "^.+\\.jsx?$": "babel-jest"
-  },
-  "moduleFileExtensions": [
-    "js",
-    "jsx"
-  ]
-}
+	collectCoverageFrom: ['src/**/*.{jsx,js}'],
+	testMatch: ['**/*.spec.js'],
+	moduleFileExtensions: ['js', 'jsx'],
+};
