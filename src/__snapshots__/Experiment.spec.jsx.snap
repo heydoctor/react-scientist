@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Experiment#onStart throws 1`] = `"<Experiment />: This method should be overwritten somewhere before React is mounted, e.g. Experiment.onStart = () => {...}"`;
+
+exports[`varianceHelpers #getWeightSum throws if any weight is greater than 1 1`] = `"<Experiment />: Weights should be < 1 and in decimal form. The sum of the variant weights should most commonly add up to 1, e.g. 0.5 & 0.5"`;

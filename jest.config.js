@@ -1,5 +1,5 @@
 module.exports = {
-	collectCoverageFrom: ['src/**/*.{jsx,js}'],
-	testMatch: ['**/*.spec.js'],
+	collectCoverageFrom: ['src/**/*.jsx'],
+	testMatch: ['**/*.spec.jsx'],
 	moduleFileExtensions: ['js', 'jsx'],
 };
