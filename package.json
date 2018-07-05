@@ -16,11 +16,12 @@
     "node": ">=8"
   },
   "scripts": {
+    "precommit": "lint-staged",
     "prebuild": "rimraf lib",
     "build": "rollup -c",
     "test": "jest",
     "prepublishOnly": "npm run build",
-    "release": "standard-version",
+    "release": "standard-version && git push --follow-tags",
     "typecheck": "flow check"
   },
   "files": [
@@ -51,7 +52,10 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "flow-bin": "^0.75.0",
+    "husky": "^0.14.3",
     "jest": "^23.3.0",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.13.7",
     "react": "^16.4.1",
     "rimraf": "^2.6.2",
     "rollup": "^0.62.0",
@@ -63,5 +67,11 @@
   },
   "peerDependencies": {
     "react": "^16.0.0"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
