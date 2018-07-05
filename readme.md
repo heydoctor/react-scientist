@@ -1,4 +1,5 @@
-# react-scientist [![Build Status](https://travis-ci.org/sappira-inc/react-scientist.svg?branch=master)](https://travis-ci.org/sappira-inc/react-scientist)
+# react-scientist [![Build Status](https://travis-ci.org/sappira-inc/react-scientist.svg?branch=master)](https://travis-ci.org/sappira-inc/react-scientist) [![codecov](https://codecov.io/gh/sappira-inc/react-scientist/branch/master/graph/badge.svg)](https://codecov.io/gh/sappira-inc/react-scientist)
+
 
 > Simple React components for split testing and analytics
 
@@ -25,6 +26,8 @@ $ yarn add react-scientist
 #### Usage
 
 ```jsx
+import { Experiment } from 'react-scientist';
+
 // Override the static `onStart` method to listen when users are enrolled in an experiment.
 Experiment.onStart = ({ experimentName, experimentId, variantIndex, variantName }) => {
   // Handle experiement start. Typically will send an analytic event to Segment, Google Analytics, etc.
