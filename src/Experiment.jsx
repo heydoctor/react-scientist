@@ -1,5 +1,6 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import React from 'react';
 import crc32 from 'fbjs/lib/crc32';
 import storage from './storage';
 
@@ -7,7 +8,29 @@ const throwError = message => {
   throw new Error(`<Experiment />: ${message}`);
 };
 
-export const selectVariantIndex = (variants, staticId) => {
+type Variant = {
+  name: string,
+  weight: number,
+  render: Function
+}
+
+type VariantList  = Array<Variant>;
+
+type ExperimentProps = {
+  name: string,
+  id?: string | number,
+  userId?: string,
+  variants: VariantList
+};
+
+type StartArgs = {
+  experimentName: string,
+  experimentId?: string | number,
+  variantIndex: number,
+  variantName: string,
+}
+
+export const selectVariantIndex = (variants: VariantList, staticId: ?number | ?string): number => {
   // Sorted array of the variant names, example: ["A", "B", "C"]
   const weightSum = variants.reduce((a, b) => {
     if (b.weight > 1) {
@@ -32,21 +55,8 @@ export const selectVariantIndex = (variants, staticId) => {
   return variantIndex;
 };
 
-class Experiment extends Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    id: PropTypes.string,
-    userId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    variants: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        weight: PropTypes.number.isRequired,
-        render: PropTypes.func.isRequired,
-      })
-    ),
-  };
-
-  static onStart = () => {
+class Experiment extends React.Component<ExperimentProps> {
+  static onStart = (args: StartArgs) => {
     throwError('This method should be overwritten somewhere before React is mounted, e.g. Experiment.onStart = () => {...}');
   };
 

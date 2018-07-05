@@ -1,32 +1,47 @@
-import React, { Component } from 'react';
+// @flow
+
+import * as React from 'react';
 import PropTypes from 'prop-types';
 
-const throwError = message => {
+type MetricProps = {
+  on: string,
+  name: string,
+  data?: Object,
+  options?: Object,
+  children: React.Node
+};
+
+type EventArgs = {
+  name: string,
+  data?: Object,
+  options?: Object
+};
+
+const throwError = (message: string) => {
   throw new Error(`<Metric />: ${message}`);
 };
 
-export default class Metric extends Component {
-  static propTypes = {
-    on: PropTypes.string,
-    name: PropTypes.string.isRequired,
-    data: PropTypes.shape(),
-    options: PropTypes.shape(),
-  };
+export default class Metric extends React.Component<MetricProps> {
+  node: ?HTMLDivElement;
 
   static defaultProps = {
     on: 'click',
   };
 
-  static onEvent = () => {
+  static onEvent = (args: EventArgs) => {
     throwError('This method should be overwritten somewhere before React is mounted, e.g. Metric.onEvent = () => {...}');
   };
 
   componentDidMount() {
-    this.node.addEventListener(this.props.on, this.trackEvent);
+    if (this.node) {
+      this.node.addEventListener(this.props.on, this.trackEvent);
+    }
   }
 
   componentWillUnmount() {
-    this.node.removeEventListener(this.props.on);
+    if (this.node) {
+      this.node.removeEventListener(this.props.on, this.trackEvent);
+    }
   }
 
   trackEvent = () => {

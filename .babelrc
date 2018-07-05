@@ -6,7 +6,8 @@
         "browsers": ["last 1 version"]
       }
     }],
-    "react"
+    "react",
+    "flow"
   ],
   "plugins": [
     "transform-object-rest-spread",

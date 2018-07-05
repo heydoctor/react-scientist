@@ -20,7 +20,8 @@
     "build": "rollup -c",
     "test": "jest",
     "prepublishOnly": "npm run build",
-    "release": "standard-version"
+    "release": "standard-version",
+    "typecheck": "flow check"
   },
   "files": [
     "lib",
@@ -46,10 +47,11 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "flow-bin": "^0.75.0",
     "jest": "^23.3.0",
-    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "rimraf": "^2.6.2",
     "rollup": "^0.62.0",
@@ -60,7 +62,6 @@
     "standard-version": "^4.4.0"
   },
   "peerDependencies": {
-    "prop-types": "^15.0.0",
     "react": "^16.0.0"
   }
 }
