@@ -1,63 +1,66 @@
 {
-	"name": "react-scientist",
-	"version": "0.0.0",
-	"description": "Simple React components for split testing and analytics",
-	"license": "MIT",
-	"repository": "sappira-inc/react-scientist",
-	"main": "lib/react-scientist.js",
-	"module": "lib/react-scientist.es.js",
-	"author": {
-		"name": "Kyle Alwyn",
-		"email": "kjalwyn@gmail.com",
-		"url": "https://kylealwyn.com"
-	},
-	"sideEffects": false,
-	"engines": {
-		"node": ">=8"
-	},
-	"scripts": {
-		"prebuild": "rimraf lib",
-		"build": "rollup -c",
-		"test": "jest"
-	},
-	"files": [
-		"lib",
-		"readme.md"
-	],
-	"keywords": [
-		"ab-testing",
-		"split-testing",
-		"experiments",
-		"science",
-		"react"
-	],
-	"dependencies": {
-		"fbjs": "^0.8.17"
-	},
-	"devDependencies": {
-		"babel-core": "^6.26.0",
-		"babel-jest": "^22.2.2",
-		"babel-plugin-external-helpers": "^6.22.0",
-		"babel-plugin-module-resolver": "^2.7.0",
-		"babel-plugin-transform-class-properties": "^6.24.1",
-		"babel-plugin-transform-export-extensions": "^6.22.0",
-		"babel-plugin-transform-object-rest-spread": "^6.26.0",
-		"babel-polyfill": "^6.26.0",
-		"babel-preset-env": "^1.6.1",
-		"babel-preset-react": "^6.24.1",
-		"babel-preset-stage-0": "^6.24.1",
-		"jest": "^23.3.0",
-		"prop-types": "^15.6.2",
-		"react": "^16.4.1",
-		"rimraf": "^2.6.2",
-		"rollup": "^0.62.0",
-		"rollup-plugin-babel": "^3.0.7",
-		"rollup-plugin-commonjs": "^9.1.3",
-		"rollup-plugin-filesize": "^2.0.0",
-		"rollup-plugin-node-resolve": "^3.3.0"
-	},
-	"peerDependencies": {
-		"prop-types": "^15.0.0",
-		"react": "^16.0.0"
-	}
+  "name": "react-scientist",
+  "version": "0.0.1",
+  "description": "Simple React components for split testing and analytics",
+  "license": "MIT",
+  "repository": "sappira-inc/react-scientist",
+  "main": "lib/react-scientist.js",
+  "module": "lib/react-scientist.es.js",
+  "author": {
+    "name": "Kyle Alwyn",
+    "email": "kjalwyn@gmail.com",
+    "url": "https://kylealwyn.com"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "prebuild": "rimraf lib",
+    "build": "rollup -c",
+    "test": "jest",
+    "prepublishOnly": "npm run build",
+    "release": "standard-version"
+  },
+  "files": [
+    "lib",
+    "readme.md"
+  ],
+  "keywords": [
+    "ab-testing",
+    "split-testing",
+    "experiments",
+    "science",
+    "react"
+  ],
+  "dependencies": {
+    "fbjs": "^0.8.17"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.2.2",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-module-resolver": "^2.7.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "jest": "^23.3.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.62.0",
+    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-commonjs": "^9.1.3",
+    "rollup-plugin-filesize": "^2.0.0",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "standard-version": "^4.4.0"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.0.0",
+    "react": "^16.0.0"
+  }
 }
