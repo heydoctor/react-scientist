@@ -46,7 +46,9 @@ class Experiment extends Component {
     ),
   };
 
-  static onStart = () => {};
+  static onStart = () => {
+    throwError('This method should be overwritten somewhere before React is mounted, e.g. Experiment.onStart = () => {...}');
+  };
 
   storeKey = `scientist.${this.props.userId ? this.props.userId : 'guest'}.${this.props.name}`;
 
