@@ -126,4 +126,12 @@ describe('<Experiment />', () => {
 
     expect(['Control', 'Test']).toContain(container.textContent);
   });
+
+  test('renders null if no variant is found', () => {
+    const name = 'Null';
+    Storage.setItem('scientist.guest.Null', 'asdfasdf');
+    const { container } = render(<Subject name={name} />);
+
+    expect(container.textContent).toContain('');
+  });
 });

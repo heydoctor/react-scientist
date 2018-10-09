@@ -97,7 +97,7 @@ class Experiment extends React.Component<ExperimentProps> {
     const { name, variants, id, userId } = this.props;
 
     const storedVariantIndex = storage.getItem(this.storeKey);
-    if (typeof storedVariantIndex === 'number')
+    if (storedVariantIndex !== undefined && storedVariantIndex !== null)
       return variants[storedVariantIndex];
 
     const variantIndex = varianceHelpers.selectVariantIndex(variants, userId);
@@ -115,7 +115,10 @@ class Experiment extends React.Component<ExperimentProps> {
   };
 
   render() {
-    return this.getVariant().render();
+    const variant = this.getVariant();
+    if (variant) return variant.render();
+
+    return null;
   }
 }
 
