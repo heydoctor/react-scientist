@@ -26,11 +26,14 @@ $ yarn add react-scientist
 #### Usage
 
 ```jsx
+import React from 'react';
+import { render } from 'react-dom';
 import { Experiment } from 'react-scientist';
 
-// Override the static `onStart` method to listen when users are enrolled in an experiment.
+// Override the static `onStart` method to listen when users are enrolled in an experiment. NOTE: Overriding the `onStart` method should happen **before** the React app is rendered to the DOM.
+
 Experiment.onStart = ({ experimentName, experimentId, variantIndex, variantName }) => {
-  // Handle experiement start. Typically will send an analytic event to Segment, Google Analytics, etc.
+  // Handle experiment start. Typically will send an analytic event to Segment, Google Analytics, etc.
 };
 
 const LoginTitleExperiment = () => (
@@ -54,37 +57,40 @@ const LoginTitleExperiment = () => (
 render(<LoginTitleExperiment />);
 ```
 
+---
+
 ### `Metric`
 
 #### Props
-|  name | type  |   required | default   | description   |
-|---|---|---|---|---|
-|  `name` | string  | ✅   | | The name of the event, e.g. `Button Clicked` |
-|  `on` | string  |   | `click` | The event to listen to, e.g. `click`, `hover` |
-| `data`  |  object |   | {} | Extra data to send along with the event, e.g. `{ location: 'banner' }` |
-| `options` | object |   | {} | Options to pass to Event handler |
+
+| name      | type   | required | default | description                                                            |
+| --------- | ------ | -------- | ------- | ---------------------------------------------------------------------- |
+| `name`    | string | ✅       |         | The name of the event, e.g. `Button Clicked`                           |
+| `on`      | string |          | `click` | The event to listen to, e.g. `click`, `hover`                          |
+| `data`    | object |          | {}      | Extra data to send along with the event, e.g. `{ location: 'banner' }` |
+| `options` | object |          | {}      | Options to pass to Event handler                                       |
 
 #### Usage
 
 ```jsx
+import React from 'react';
+import { render } from 'react-dom';
 import { Metric } from 'react-scientist';
 
-// Override the static `onEvent` method to listen when events are captured.
+// Override the static `onEvent` method to listen when events are captured. NOTE: Overriding the `onEvent`
+method should happen **before** the React app is rendered to the DOM.
 Metric.onEvent = ({ name, data, options }) => {
   // Handle event capture. Typically will send an analytic event to Segment, Google Analytics, etc.
 };
 
 const MetricExample = () => (
   <Metric name="Facebook Login Clicked">
-    <Button>
-      Login With Facebook
-    </Button>
+    <Button>Login With Facebook</Button>
   </Metric>
 );
 
 render(<MetricExample />);
 ```
-
 
 ## License
 
