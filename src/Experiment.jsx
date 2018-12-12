@@ -2,7 +2,7 @@
 
 import React from 'react';
 import crc32 from 'fbjs/lib/crc32';
-import storage from './storage';
+import Cookie from 'js-cookie';
 
 type Variant = {
   name: string,
@@ -89,20 +89,20 @@ class Experiment extends React.Component<ExperimentProps> {
     );
   };
 
-  storeKey = `scientist.${this.props.userId ? this.props.userId : 'guest'}.${
-    this.props.name
-  }`;
+  storeKey = `scientist.${
+    this.props.userId !== undefined ? this.props.userId : 'guest'
+  }.${this.props.name}`;
 
   getVariant = () => {
     const { name, variants, id, userId } = this.props;
 
-    const storedVariantIndex = storage.getItem(this.storeKey);
+    const storedVariantIndex = Cookie.get(this.storeKey);
     if (storedVariantIndex !== undefined && storedVariantIndex !== null)
       return variants[storedVariantIndex];
 
     const variantIndex = varianceHelpers.selectVariantIndex(variants, userId);
     const selectedVariant = variants[variantIndex];
-    storage.setItem(this.storeKey, variantIndex);
+    Cookie.set(this.storeKey, variantIndex);
 
     this.constructor.onStart({
       experimentName: name,
