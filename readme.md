@@ -20,7 +20,8 @@ $ yarn add react-scientist
 |---|---|---|---|---|
 |  `name` | string  | ✅   | | The name of the experiment |
 |  `id` | string  |   | "" | An external experiment ID, e.g. from Google Optimize |
-| `userId`  |  string |   | "" |  static user ID to ensure users have consistent, repeat experiences when running experiments |
+| `userId`  |  string |   | "" | A static user ID to ensure logged-in users have consistent experiences when running experiments |
+| `domain`  |  string |   | `document.location.host` | The domain that the variant cookie should be set on. |
 | `variants` | array |  ✅ |  | List of possible variants for the experiment to choose from. |
 
 #### Usage
@@ -30,7 +31,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Experiment } from 'react-scientist';
 
-// Override the static `onStart` method to listen when users are enrolled in an experiment. NOTE: Overriding the `onStart` method should happen **before** the React app is rendered to the DOM.
+// Override the static `onStart` method to listen when users are enrolled in an experiment.
+// NOTE: Overriding the `onStart` method should happen **before** the React app is rendered to the DOM.
 
 Experiment.onStart = ({ experimentName, experimentId, variantIndex, variantName }) => {
   // Handle experiment start. Typically will send an analytic event to Segment, Google Analytics, etc.
@@ -57,6 +59,28 @@ const LoginTitleExperiment = () => (
 render(<LoginTitleExperiment />);
 ```
 
+## Cross Domain Experiments
+`<Experiment />` uses cookies to store the active variant for your running experiments. If you'd like to run experiments on both a naked domain and a subdomain, pass the root domain as the `domain` prop. Make sure to prefix the domain with leading `.` so the cookie will be accessible across any property.
+
+```jsx
+<Experiment
+  name="Cross Domain"
+  domain=".example.com"
+  variants={[
+    {
+      name: 'Control',
+      weight: 0.5,
+      render: () => <h1>Sign In</h1>,
+    },
+    {
+      name: 'Login',
+      weight: 0.5,
+      render: () => <h1>Login</h1>,
+    },
+  ]}
+/>
+```
+
 ---
 
 ### `Metric`
@@ -78,7 +102,7 @@ import { render } from 'react-dom';
 import { Metric } from 'react-scientist';
 
 // Override the static `onEvent` method to listen when events are captured. NOTE: Overriding the `onEvent`
-method should happen **before** the React app is rendered to the DOM.
+// method should happen **before** the React app is rendered to the DOM.
 Metric.onEvent = ({ name, data, options }) => {
   // Handle event capture. Typically will send an analytic event to Segment, Google Analytics, etc.
 };
