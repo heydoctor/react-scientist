@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/sappira-inc/react-scientist/compare/v0.1.2...v1.0.0) (2018-12-13)
+
+
+### Features
+
+* Swap local storage for cookies to store cached variants ([#3](https://github.com/sappira-inc/react-scientist/issues/3)) ([d86b1ff](https://github.com/sappira-inc/react-scientist/commit/d86b1ff))
+
+
+### BREAKING CHANGES
+
+* This will reset any running experiments. This allows experiment variants to be accessed across subdomains.
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/sappira-inc/react-scientist/compare/v0.1.1...v0.1.2) (2018-10-09)
 
