@@ -36,7 +36,8 @@
     "react"
   ],
   "dependencies": {
-    "fbjs": "^0.8.17"
+    "fbjs": "^0.8.17",
+    "js-cookie": "^2.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

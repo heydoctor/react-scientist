@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
+import Cookie from 'js-cookie';
 import Experiment, { varianceHelpers } from './Experiment';
-import Storage from './storage';
 
 const variants = [
   {
@@ -102,14 +102,14 @@ describe('<Experiment />', () => {
   test('storeKey is set to guest if no userId is provided', () => {
     const name = 'Test';
     const { container } = render(<Subject name={name} />);
-    expect(Storage.getItem(`scientist.guest.${name}`)).toBeDefined();
+    expect(Cookie.get(`scientist.guest.${name}`)).toBeDefined();
   });
 
   test('storeKey uses userId if provided', () => {
     const name = 'Test';
     const userId = 3;
     const { container } = render(<Subject name={name} userId={userId} />);
-    expect(Storage.getItem(`scientist.${userId}.${name}`)).toBeDefined();
+    expect(Cookie.get(`scientist.${userId}.${name}`)).toBeDefined();
   });
 
   test('calls Experiment.onStart only once', () => {
@@ -129,7 +129,7 @@ describe('<Experiment />', () => {
 
   test('renders null if no variant is found', () => {
     const name = 'Null';
-    Storage.setItem('scientist.guest.Null', 'asdfasdf');
+    Cookie.set('scientist.guest.Null', 'asdfasdf');
     const { container } = render(<Subject name={name} />);
 
     expect(container.textContent).toContain('');
