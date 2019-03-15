@@ -1,4 +1,4 @@
-# 👩‍🔬 React Scientist [![Build Status](https://travis-ci.org/sappira-inc/react-scientist.svg?branch=master)](https://travis-ci.org/sappira-inc/react-scientist) [![codecov](https://codecov.io/gh/sappira-inc/react-scientist/branch/master/graph/badge.svg)](https://codecov.io/gh/sappira-inc/react-scientist)
+# 👩‍🔬 React Scientist [![Build Status](https://travis-ci.org/heydoctor/react-scientist.svg?branch=master)](https://travis-ci.org/heydoctor/react-scientist) [![codecov](https://codecov.io/gh/heydoctor/react-scientist/branch/master/graph/badge.svg)](https://codecov.io/gh/heydoctor/react-scientist)
 
 
 > Simple React components for split testing and analytics
