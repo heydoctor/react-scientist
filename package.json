@@ -1,6 +1,6 @@
 {
   "name": "react-scientist",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple React components for split testing and analytics",
   "license": "MIT",
   "repository": "sappira-inc/react-scientist",

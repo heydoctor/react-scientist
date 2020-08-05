@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/sappira-inc/react-scientist/compare/v1.0.0...v1.0.1) (2020-08-05)
+
+
+### Bug Fixes
+
+* disable tracking ([#6](https://github.com/sappira-inc/react-scientist/issues/6)) ([504a223](https://github.com/sappira-inc/react-scientist/commit/504a223))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/sappira-inc/react-scientist/compare/v0.1.2...v1.0.0) (2018-12-13)
 
