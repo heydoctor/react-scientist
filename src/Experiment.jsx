@@ -18,6 +18,7 @@ type ExperimentProps = {
   domain?: string,
   userId?: string,
   variants: VariantList,
+  disableTracking?: boolean,
 };
 
 type StartArgs = {
@@ -58,7 +59,7 @@ export const varianceHelpers = {
    * Random number between 0 and 100. If userId is provided, calculate fixed number within
    * bounds to maintain consistent experience across repeat visits
    */
-  getWeightedIndex(weightSum: number, staticId: number): number {
+  getWeightedIndex(weightSum: number, staticId?: number | string): number {
     return staticId
       ? Math.abs(crc32(`${staticId}`) % weightSum)
       : Math.floor(Math.random() * weightSum);
@@ -69,7 +70,7 @@ export const varianceHelpers = {
    */
   selectVariantIndex(
     variants: VariantList,
-    staticId: ?number | ?string
+    staticId?: number | string
   ): number {
     const weightSum = this.getWeightSum(variants);
     const weightedDistribution = this.getWeightedDistribution(variants);
@@ -98,7 +99,7 @@ class Experiment extends React.Component<ExperimentProps> {
   }.${this.props.name}`;
 
   getVariant = () => {
-    const { name, variants, id, userId } = this.props;
+    const { name, variants, id, userId, disableTracking } = this.props;
 
     const storedVariantIndex = Cookie.get(this.storeKey);
     if (storedVariantIndex !== undefined && storedVariantIndex !== null)
@@ -108,6 +109,8 @@ class Experiment extends React.Component<ExperimentProps> {
     const selectedVariant = variants[variantIndex];
 
     Cookie.set(this.storeKey, variantIndex, { domain: this.props.domain });
+
+    if (disableTracking) return selectedVariant;
 
     this.constructor.onStart({
       experimentName: name,
