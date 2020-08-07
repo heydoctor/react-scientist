@@ -6,19 +6,20 @@ import Cookie from 'js-cookie';
 
 type Variant = {
   name: string,
-  weight: number,
+  weight?: number,
   render: Function,
 };
 
 type VariantList = Array<Variant>;
 
 type ExperimentProps = {
-  name: string,
-  id?: string | number,
+  activeVariant?: string, //add ability to define active variant outside (optimizely or split or any other a/b testing platform)
+  disableTracking?: boolean,
   domain?: string,
+  id?: string | number,
+  name: string,
   userId?: string,
   variants: VariantList,
-  disableTracking?: boolean,
 };
 
 type StartArgs = {
@@ -70,8 +71,13 @@ export const varianceHelpers = {
    */
   selectVariantIndex(
     variants: VariantList,
-    staticId?: number | string
+    staticId?: number | string,
+    activeVariant?: string
   ): number {
+    if (activeVariant) {
+      return variants.findIndex(v => v.name === activeVariant);
+    }
+
     const weightSum = this.getWeightSum(variants);
     const weightedDistribution = this.getWeightedDistribution(variants);
     const weightedIndex = this.getWeightedIndex(weightSum, staticId);
@@ -99,13 +105,28 @@ class Experiment extends React.Component<ExperimentProps> {
   }.${this.props.name}`;
 
   getVariant = () => {
-    const { name, variants, id, userId, disableTracking } = this.props;
+    const {
+      name,
+      variants,
+      id,
+      userId,
+      activeVariant,
+      disableTracking,
+    } = this.props;
 
     const storedVariantIndex = Cookie.get(this.storeKey);
-    if (storedVariantIndex !== undefined && storedVariantIndex !== null)
+    if (
+      !activeVariant && //if variant defined outside, do not rely on cookie
+      storedVariantIndex !== undefined &&
+      storedVariantIndex !== null
+    )
       return variants[storedVariantIndex];
 
-    const variantIndex = varianceHelpers.selectVariantIndex(variants, userId);
+    const variantIndex = varianceHelpers.selectVariantIndex(
+      variants,
+      userId,
+      activeVariant
+    );
     const selectedVariant = variants[variantIndex];
 
     Cookie.set(this.storeKey, variantIndex, { domain: this.props.domain });
