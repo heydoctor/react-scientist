@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Feature#onStart throws 1`] = `"<Feature />: This method should be overwritten somewhere before React is mounted, e.g. Feature.onStart = () => {...}"`;
