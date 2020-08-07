@@ -134,4 +134,11 @@ describe('<Experiment />', () => {
 
     expect(container.textContent).toContain('');
   });
+
+  test('renders predefined variant', () => {
+    const name = 'Test';
+    const { container } = render(<Subject name={name} activeVariant="Test" />);
+
+    expect(['Test']).toContain(container.textContent);
+  });
 });

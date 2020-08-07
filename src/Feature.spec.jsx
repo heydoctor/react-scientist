@@ -1,10 +1,14 @@
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
+import { render } from 'react-testing-library';
 import Cookie from 'js-cookie';
 import Feature from './Feature';
 
 const children = (isEnabled: boolean, variables: VariableValuesObject) =>
   isEnabled && <span>{JSON.stringify(variables)}</span>;
+
+test('Feature#onStart throws', () => {
+  expect(() => Feature.onStart()).toThrowErrorMatchingSnapshot();
+});
 
 describe('<Feature />', () => {
   beforeAll(() => {
